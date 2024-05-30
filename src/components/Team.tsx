@@ -1,6 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
-import { draggable } from "@atlaskit/pragmatic-drag-and-drop/element/adapter";
-import invariant from "tiny-invariant";
+import React, { useRef } from "react";
+import { useDrag } from "react-dnd";
 
 export const teamColors = ["blue", "green", "red", "yellow"];
 
@@ -12,13 +11,15 @@ export type TeamType = {
   eliminated: boolean;
 };
 
-type TeamPropType = TeamType & {
+export type TeamHandler = {
   onChangeName: (id: string, name: string) => void;
   onChangeColor: (id: string) => void;
   onChangeScore: (id: string, score: number) => void;
   onChangeEliminated: (id: string) => void;
   onRemove: (id: string) => void;
 };
+
+type TeamPropType = TeamType & TeamHandler;
 
 export default function Team({
   id,
@@ -32,25 +33,23 @@ export default function Team({
   onChangeEliminated,
   onRemove,
 }: TeamPropType) {
-  const ref = useRef(null);
-  const [dragging, setDragging] = useState<boolean>(false);
+  const ref = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const el = ref.current;
-    invariant(el);
+  const [{ isDragging }, drag] = useDrag(() => ({
+    type: "team",
+    team: { id },
+    collect: (monitor) => ({
+      isDragging: !!monitor.isDragging(),
+    }),
+  }));
 
-    return draggable({
-      element: el,
-      onDragStart: () => setDragging(true),
-      onDrop: () => setDragging(false),
-    });
-  }, []);
+  drag(ref);
 
   return (
     <div
       className="flex items-center gap-2"
       ref={ref}
-      style={{ opacity: dragging ? 0.8 : 1 }}
+      style={{ opacity: isDragging ? 0.8 : 1 }}
     >
       <div className="draggable" />
       <input
@@ -73,7 +72,6 @@ export default function Team({
         onClick={() => onChangeColor(id)}
       >
         {score}
-        {dragging}
       </button>
       <button
         type="button"
@@ -85,7 +83,7 @@ export default function Team({
       <button
         type="button"
         className="button"
-        onChange={() => onChangeEliminated(id)}
+        onClick={() => onChangeEliminated(id)}
       >
         {eliminated ? "Activate" : "Eliminate"}
       </button>
