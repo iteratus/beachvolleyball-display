@@ -1,0 +1,30 @@
+import { TeamType } from "@/components/Team";
+
+export const formatTime = (seconds: number) => {
+  const minutes = Math.floor(seconds / 60);
+  const secs = seconds % 60;
+  return `${minutes}:${secs < 10 ? "0" : ""}${secs}`;
+};
+
+export const findTeamIndex = (activeTeams: TeamType[], id: string) => {
+  return activeTeams.findIndex((team) => {
+    return team.id === id;
+  });
+};
+
+export const updateTeam = (
+  activeTeams: TeamType[],
+  toUpdate: Partial<TeamType>,
+  index: number | null = null,
+): TeamType[] => {
+  if (index === null) {
+    return [...activeTeams, toUpdate] as TeamType[];
+  }
+
+  const updatedTeams = [...activeTeams];
+  updatedTeams[index] = { ...updatedTeams[index], ...toUpdate };
+
+  return updatedTeams;
+};
+
+export default formatTime;

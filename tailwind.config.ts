@@ -9,18 +9,19 @@ const config: Config = {
   theme: {
     extend: {
       fontSize: {
-        clock: [
-          "1vw",
+        clockFaceGUI: [
+          "100pt",
           {
-            lineHeight: "1.4vw",
+            lineHeight: "1",
           },
         ],
       },
       colors: {
         mainColor: "#FFFFFF",
+        input: "#000000",
       },
       backgroundColor: {
-        mainPanel: "#333333",
+        mainPanel: "#1c1c1e",
       },
     },
   },
