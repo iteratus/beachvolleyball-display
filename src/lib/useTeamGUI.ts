@@ -30,7 +30,7 @@ export default function useTeamGUI(
     const updatedTeams = updateTeam(activeTeams, {
       id: uuid(),
       name: "",
-      color: "blue",
+      color: teamColors[0],
       score: 0,
       eliminated: false,
     });
@@ -90,7 +90,7 @@ export default function useTeamGUI(
           const updatedTeams = updateTeam(
             reference.teams,
             {
-              score: currentScore + score,
+              score: Math.max(currentScore + score, 0),
             },
             index,
           );
