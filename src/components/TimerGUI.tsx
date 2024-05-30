@@ -26,7 +26,7 @@ export default function TimerGUI() {
       setInitialMinutes((prevState) => {
         const newTime = prevState + step;
 
-        if (newTime > 0) {
+        if (newTime > 0 && newTime < 100) {
           localStorage.setItem("timerInitialMinutes", newTime.toString());
           return newTime;
         }

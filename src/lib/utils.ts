@@ -3,7 +3,7 @@ import { TeamType } from "@/components/Team";
 export const formatTime = (seconds: number) => {
   const minutes = Math.floor(seconds / 60);
   const secs = seconds % 60;
-  return `${minutes}:${secs < 10 ? "0" : ""}${secs}`;
+  return `${minutes < 10 ? "0" : ""}${minutes}:${secs < 10 ? "0" : ""}${secs}`;
 };
 
 export const findTeamIndex = (activeTeams: TeamType[], id: string) => {
