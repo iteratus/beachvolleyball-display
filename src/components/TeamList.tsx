@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import Team, { TeamType } from "@/components/Team";
 import useTeamList from "@/lib/useTeamList";
 import { DropTargetMonitor, useDrop } from "react-dnd";
+import Button from "@/components/Button";
 
 type TeamListProps = {
   stackName: string;
@@ -35,7 +36,7 @@ export default function TeamList({
     handleChangeName,
   } = useTeamList(stackName, teams, setTeams);
 
-  const [collectedProps, drop] = useDrop({
+  const dropHandler = useDrop({
     accept: "team",
     hover(item, monitor) {
       if (!ref.current) {
@@ -45,12 +46,12 @@ export default function TeamList({
     },
   });
 
-  drop(ref);
+  dropHandler[1](ref);
 
   return (
     <div>
       <h2 className="text-2xl mb-4">{title}</h2>
-      <div className="flex flex-col gap-2 teamList" ref={ref}>
+      <div className="flex flex-col min-w-[446px] teamList" ref={ref}>
         {teams.map((team) => (
           <Team
             key={team.id}
@@ -68,9 +69,9 @@ export default function TeamList({
           />
         ))}
       </div>
-      <button type="button" className="button mt-4" onClick={handleAdd}>
+      <Button onClick={handleAdd} className="mt-4">
         Add team
-      </button>
+      </Button>
     </div>
   );
 }

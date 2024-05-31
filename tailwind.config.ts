@@ -21,7 +21,13 @@ const config: Config = {
         input: "#000000",
       },
       backgroundColor: {
+        button: "#007aff",
+        buttonActive: "#004085",
+        buttonHover: "#0056b3",
+        delete: "#c7000a",
+        input: "#2c2c2e",
         mainPanel: "#1c1c1e",
+        stepper: "#2c2c2e",
       },
     },
   },

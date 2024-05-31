@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import { DropTargetMonitor, useDrag, useDrop } from "react-dnd";
+import Button, { ButtonType } from "@/components/Button";
 
 export const teamColors = ["blue", "green", "red", "yellow"];
 
@@ -42,7 +43,7 @@ export default function Team({
 }: TeamPropType) {
   const ref = useRef<HTMLDivElement>(null);
 
-  const [collectedProps, drop] = useDrop({
+  const [{ isOver }, drop] = useDrop({
     accept: "team",
     collect(monitor) {
       return {
@@ -69,54 +70,36 @@ export default function Team({
 
   return (
     <div
-      className="flex items-center gap-2"
+      className={`flex items-center py-1 px-2 gap-2 ${isOver ? "teamHover" : ""}`}
       ref={ref}
-      style={{ opacity: isDragging ? 0.8 : 1 }}
+      style={{
+        opacity: isDragging ? 0.8 : 1,
+      }}
     >
       <div className="draggable" />
-      {collectedProps.isOver ? "over" : "out"}
       <input
         type="text"
-        className="input"
+        className="bg-input rounded p-2.5 w-24 text-sm focus:outline-none"
         defaultValue={name}
         onChange={(event) => onChangeName(id, event.target.value)}
       />
+      <Button onClick={() => onChangeScore(id, 1)} type={ButtonType.stepUp} />
       <button
         type="button"
-        className="rounded-full size-8 font-extrabold bg-[#2c2c2e]"
-        onClick={() => onChangeScore(id, 1)}
-      >
-        +
-      </button>
-      <button
-        type="button"
-        className="rounded-full size-10 font-extrabold stroke text-2xl"
+        className="rounded-full size-10 font-extrabold textShadow text-2xl"
         style={{ backgroundColor: color }}
         onClick={() => onChangeColor(id)}
       >
         {score}
       </button>
-      <button
-        type="button"
-        className="rounded-full size-8 font-extrabold bg-[#2c2c2e]"
+      <Button
         onClick={() => onChangeScore(id, -1)}
-      >
-        -
-      </button>
-      <button
-        type="button"
-        className="button"
-        onClick={() => onChangeEliminated(id)}
-      >
+        type={ButtonType.stepDown}
+      />
+      <Button onClick={() => onChangeEliminated(id)}>
         {eliminated ? "Activate" : "Eliminate"}
-      </button>
-      <button
-        type="button"
-        className="bg-[#c7000a] rounded-full size-8 font-extrabold text-md leading-none"
-        onClick={() => onRemove(id)}
-      >
-        X
-      </button>
+      </Button>
+      <Button type={ButtonType.delete} onClick={() => onRemove(id)} />
     </div>
   );
 }

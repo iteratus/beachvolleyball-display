@@ -1,5 +1,6 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import Timer, { TimerHandle } from "@/components/Timer";
+import Button, { ButtonType } from "@/components/Button";
 
 export default function TimerGUI() {
   const [initialMinutes, setInitialMinutes] = useState<number>(15);
@@ -40,13 +41,7 @@ export default function TimerGUI() {
   return (
     <div className="grid grid-cols-[50px_1fr_1fr] grid-rows-3 gap-6 w-fit h-fit justify-items-center">
       <div className="self-end">
-        <button
-          type="button"
-          className="button square"
-          onClick={setNewTimerInit(1)}
-        >
-          +
-        </button>
+        <Button onClick={setNewTimerInit(1)} type={ButtonType.stepUp} />
       </div>
       <div className="col-span-2 row-span-2">
         <Timer
@@ -56,28 +51,16 @@ export default function TimerGUI() {
         />
       </div>
       <div className="self-start">
-        <button
-          type="button"
-          className="button square"
-          onClick={setNewTimerInit(-1)}
-        >
-          -
-        </button>
+        <Button onClick={setNewTimerInit(-1)} type={ButtonType.stepDown} />
       </div>
       <div />
       <div>
-        <button
-          className="button"
-          type="button"
-          onClick={() => setIsPaused(!isPaused)}
-        >
+        <Button onClick={() => setIsPaused(!isPaused)}>
           {isPaused ? "Start" : "Pause"}
-        </button>
+        </Button>
       </div>
       <div>
-        <button className="button" type="button" onClick={resetTimer}>
-          Reset
-        </button>
+        <Button onClick={resetTimer}>Reset</Button>
       </div>
     </div>
   );
