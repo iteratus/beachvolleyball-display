@@ -16,25 +16,25 @@ const config: Config = {
           },
         ],
         clockFaceRemote: [
-          "38vmin",
+          "30vmin",
           {
             lineHeight: "1",
           },
         ],
         headline: [
-          "6vmin",
+          "4vmin",
           {
             lineHeight: "1",
           },
         ],
         team: [
-          "5vmin",
+          "3.5vmin",
           {
             lineHeight: "1",
           },
         ],
         scoreMain: [
-          "14vmin",
+          "10vmin",
           {
             lineHeight: "1",
           },
