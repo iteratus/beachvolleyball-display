@@ -38,7 +38,7 @@ export default function Home() {
         </h1>
         <TimerRemote />
       </div>
-      <div className="px-8 py-5 -skew-x-12">
+      <div className="pr-scoreBoard py-5 -skew-x-12">
         <h2 className="uppercase font-extrabold text-headline text-nowrap">
           👑 Kingside
         </h2>
@@ -56,7 +56,7 @@ export default function Home() {
           {activeTeams[0] && activeTeams[0].score}
         </div>
       </div>
-      <div className="px-8 py-5 border-x-4 -skew-x-12">
+      <div className="p-scoreBoard py-5 border-x-separator -skew-x-12">
         <h2 className="uppercase font-extrabold text-headline">Challenger</h2>
         <div className="uppercase font-extrabold text-headline pt-2 text-nowrap">
           {activeTeams[1] && activeTeams[1].name}
@@ -72,7 +72,7 @@ export default function Home() {
           {activeTeams[1] && activeTeams[1].score}
         </div>
       </div>
-      <div className="px-8 py-5 -skew-x-12">
+      <div className="pl-scoreBoard py-5 -skew-x-12">
         <h2 className="uppercase font-extrabold text-headline text-nowrap">
           Next up
         </h2>

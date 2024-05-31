@@ -54,8 +54,14 @@ const config: Config = {
         mainPanel: "#1c1c1e",
         stepper: "#2c2c2e",
       },
+      borderWidth: {
+        separator: "1vmin",
+      },
       gridTemplateRows: {
         custom: "auto auto",
+      },
+      padding: {
+        scoreBoard: "8vmin",
       },
     },
   },

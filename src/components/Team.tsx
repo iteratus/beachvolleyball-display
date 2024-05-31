@@ -3,7 +3,13 @@ import { useDrag, useDrop } from "react-dnd";
 import Button, { ButtonEnum } from "@/components/Button";
 import type { DragDataType, TeamType } from "@/lib/Types";
 
-export const teamColors = ["blue", "green", "red", "yellow"];
+export const teamColors = [
+  "#2196F3", // strong blue
+  "#FF6F61", // strong coral red
+  "#FFC107", // bright yellow
+  "#4CAF50", // vibrant green
+  "#E91E63", // intense pink
+];
 
 type TeamHandler = {
   onChangeName: (id: string, name: string) => void;
@@ -64,11 +70,11 @@ export default function Team({
       <div className="draggable" />
       <input
         type="text"
-        className="bg-input rounded p-2.5 w-24 text-sm focus:outline-none"
+        className="bg-input rounded p-2.5 w-40 text-sm focus:outline-none"
         defaultValue={name}
         onChange={(event) => onChangeName(id, event.target.value)}
       />
-      <Button onClick={() => onChangeScore(id, 1)} type={ButtonEnum.stepUp} />
+      <Button type={ButtonEnum.stepUp} onClick={() => onChangeScore(id, 1)} />
       <button
         type="button"
         className="rounded-full size-10 font-extrabold textShadow text-2xl"
@@ -78,13 +84,15 @@ export default function Team({
         {score}
       </button>
       <Button
-        onClick={() => onChangeScore(id, -1)}
         type={ButtonEnum.stepDown}
+        onClick={() => onChangeScore(id, -1)}
       />
-      <Button onClick={() => onChangeEliminated(id)}>
-        {eliminated ? "Activate" : "Eliminate"}
-      </Button>
-      <Button type={ButtonEnum.delete} onClick={() => onRemove(id)} />
+      <Button
+        emoji={eliminated ? "⬅️" : "➡️"}
+        className="mx-3"
+        onClick={() => onChangeEliminated(id)}
+      />
+      <Button emoji="🗑️" onClick={() => onRemove(id)} />
     </div>
   );
 }
