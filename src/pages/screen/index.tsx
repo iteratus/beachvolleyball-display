@@ -1,7 +1,7 @@
 import TimerRemote from "@/components/TimerRemote";
 import { Saira } from "next/font/google";
 import { useCallback, useEffect, useState } from "react";
-import { TeamType } from "@/components/Team";
+import type { TeamType } from "@/lib/Types";
 
 const saira = Saira({
   weight: "700",

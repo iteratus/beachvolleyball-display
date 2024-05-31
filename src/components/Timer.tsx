@@ -1,4 +1,4 @@
-import React, {
+import {
   useEffect,
   useState,
   useRef,
@@ -7,17 +7,14 @@ import React, {
 } from "react";
 import { formatTime } from "@/lib/utils";
 import TimerDisplay from "@/components/TimerDisplay";
+import type { TimerHandling } from "@/lib/Types";
 
 interface TimerProps {
   initialMinutes: number;
   isPaused: boolean;
 }
 
-export interface TimerHandle {
-  reset: () => void;
-}
-
-const Timer = forwardRef<TimerHandle, TimerProps>(
+const Timer = forwardRef<TimerHandling, TimerProps>(
   ({ initialMinutes, isPaused }, ref) => {
     const [time, setTime] = useState(initialMinutes * 60);
     const intervalRef = useRef<number | undefined>(undefined);

@@ -1,6 +1,13 @@
-export interface Teams {
+export type TeamType = {
   id: string;
   name: string;
+  color: string;
   score: number;
-  isOut: boolean;
+  eliminated: boolean;
+};
+
+export type DragDataType = { id: string };
+
+export interface TimerHandling {
+  reset: () => void;
 }

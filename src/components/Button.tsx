@@ -1,6 +1,6 @@
-import React, { type MouseEvent, type ReactNode } from "react";
+import { type MouseEvent, type ReactNode } from "react";
 
-export enum ButtonType {
+export enum ButtonEnum {
   regular,
   stepUp,
   stepDown,
@@ -11,31 +11,31 @@ type ButtonProps = {
   children?: ReactNode;
   className?: string;
   onClick: (event: MouseEvent<HTMLButtonElement>) => void;
-  type?: ButtonType;
+  type?: ButtonEnum;
 };
 
 export default function Button({
   children,
   className,
   onClick,
-  type = ButtonType.regular,
+  type = ButtonEnum.regular,
 }: ButtonProps) {
   let usedChildren = children;
 
-  if (type === ButtonType.stepUp) {
+  if (type === ButtonEnum.stepUp) {
     usedChildren = "+";
-  } else if (type === ButtonType.stepDown) {
+  } else if (type === ButtonEnum.stepDown) {
     usedChildren = "-";
-  } else if (type === ButtonType.delete) {
+  } else if (type === ButtonEnum.delete) {
     usedChildren = "X";
   }
 
   let classNames =
     "rounded py-2 px-7 text-sm bg-button cursor-pointer hover:bg-buttonHover active:bg-buttonActive";
 
-  if (type === ButtonType.stepUp || type === ButtonType.stepDown) {
+  if (type === ButtonEnum.stepUp || type === ButtonEnum.stepDown) {
     classNames = "rounded-full size-8 font-extrabold bg-stepper";
-  } else if (type === ButtonType.delete) {
+  } else if (type === ButtonEnum.delete) {
     classNames =
       "rounded-full size-8 font-extrabold bg-delete text-md leading-none";
   }

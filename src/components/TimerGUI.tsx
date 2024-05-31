@@ -1,12 +1,13 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import Timer, { TimerHandle } from "@/components/Timer";
-import Button, { ButtonType } from "@/components/Button";
+import { useCallback, useEffect, useRef, useState } from "react";
+import Timer from "@/components/Timer";
+import Button, { ButtonEnum } from "@/components/Button";
+import type { TimerHandling } from "@/lib/Types";
 
 export default function TimerGUI() {
   const [initialMinutes, setInitialMinutes] = useState<number>(15);
 
   const [isPaused, setIsPaused] = useState<boolean>(true);
-  const timerRef = useRef<TimerHandle>(null);
+  const timerRef = useRef<TimerHandling>(null);
 
   const resetTimer = () => {
     if (timerRef.current) {
@@ -41,7 +42,7 @@ export default function TimerGUI() {
   return (
     <div className="grid grid-cols-[50px_1fr_1fr] grid-rows-4 gap-6 w-fit h-fit justify-items-center">
       <div className="self-end">
-        <Button onClick={setNewTimerInit(1)} type={ButtonType.stepUp} />
+        <Button onClick={setNewTimerInit(1)} type={ButtonEnum.stepUp} />
       </div>
       <div className="col-span-2 row-span-2">
         <Timer
@@ -51,7 +52,7 @@ export default function TimerGUI() {
         />
       </div>
       <div className="self-start">
-        <Button onClick={setNewTimerInit(-1)} type={ButtonType.stepDown} />
+        <Button onClick={setNewTimerInit(-1)} type={ButtonEnum.stepDown} />
       </div>
       <div />
       <div>

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { formatTime } from "@/lib/utils";
 import TimerDisplay, { TimerSize } from "@/components/TimerDisplay";
 

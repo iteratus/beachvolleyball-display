@@ -1,21 +1,17 @@
-import React, { useRef } from "react";
-import Team, { TeamType } from "@/components/Team";
+import React, { type Dispatch, type SetStateAction, useRef } from "react";
+import Team from "@/components/Team";
 import useTeamList from "@/lib/useTeamList";
-import { DropTargetMonitor, useDrop } from "react-dnd";
+import { useDrop } from "react-dnd";
 import Button from "@/components/Button";
+import type { DragDataType, TeamType } from "@/lib/Types";
 
 type TeamListProps = {
   stackName: string;
   title: string;
   teams: TeamType[];
-  setTeams: any;
+  setTeams: Dispatch<SetStateAction<TeamType[]>>;
   onChangeEliminated: (id: string) => void;
-  onDrag: (
-    ref: any,
-    hoverId: string,
-    dragData: any,
-    monitor: DropTargetMonitor,
-  ) => void;
+  onDrag: (hoverId: string, dragData: { id: string }) => void;
 };
 
 export default function TeamList({
@@ -38,11 +34,8 @@ export default function TeamList({
 
   const dropHandler = useDrop({
     accept: "team",
-    hover(item, monitor) {
-      if (!ref.current) {
-        return;
-      }
-      onDrag(ref, stackName, item, monitor);
+    hover(item) {
+      onDrag(stackName, item as DragDataType);
     },
   });
 

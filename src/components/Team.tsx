@@ -1,29 +1,17 @@
-import React, { useRef } from "react";
-import { DropTargetMonitor, useDrag, useDrop } from "react-dnd";
-import Button, { ButtonType } from "@/components/Button";
+import { useRef } from "react";
+import { useDrag, useDrop } from "react-dnd";
+import Button, { ButtonEnum } from "@/components/Button";
+import type { DragDataType, TeamType } from "@/lib/Types";
 
 export const teamColors = ["blue", "green", "red", "yellow"];
 
-export type TeamType = {
-  id: string;
-  name: string;
-  color: string;
-  score: number;
-  eliminated: boolean;
-};
-
-export type TeamHandler = {
+type TeamHandler = {
   onChangeName: (id: string, name: string) => void;
   onChangeColor: (id: string) => void;
   onChangeScore: (id: string, score: number) => void;
   onChangeEliminated: (id: string) => void;
   onRemove: (id: string) => void;
-  onDrag: (
-    ref: any,
-    hoverId: string,
-    dragData: any,
-    monitor: DropTargetMonitor,
-  ) => void;
+  onDrag: (hoverId: string, dragData: { id: string }) => void;
 };
 
 type TeamPropType = TeamType & TeamHandler;
@@ -50,11 +38,8 @@ export default function Team({
         isOver: monitor.isOver(),
       };
     },
-    hover(item, monitor) {
-      if (!ref.current) {
-        return;
-      }
-      onDrag(ref, id, item, monitor);
+    hover(item) {
+      onDrag(id, item as DragDataType);
     },
   });
 
@@ -83,7 +68,7 @@ export default function Team({
         defaultValue={name}
         onChange={(event) => onChangeName(id, event.target.value)}
       />
-      <Button onClick={() => onChangeScore(id, 1)} type={ButtonType.stepUp} />
+      <Button onClick={() => onChangeScore(id, 1)} type={ButtonEnum.stepUp} />
       <button
         type="button"
         className="rounded-full size-10 font-extrabold textShadow text-2xl"
@@ -94,12 +79,12 @@ export default function Team({
       </button>
       <Button
         onClick={() => onChangeScore(id, -1)}
-        type={ButtonType.stepDown}
+        type={ButtonEnum.stepDown}
       />
       <Button onClick={() => onChangeEliminated(id)}>
         {eliminated ? "Activate" : "Eliminate"}
       </Button>
-      <Button type={ButtonType.delete} onClick={() => onRemove(id)} />
+      <Button type={ButtonEnum.delete} onClick={() => onRemove(id)} />
     </div>
   );
 }

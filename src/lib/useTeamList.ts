@@ -1,7 +1,8 @@
 import { useCallback } from "react";
 import { v4 as uuid } from "uuid";
 import { findTeamIndex, updateTeam } from "@/lib/utils";
-import { teamColors, TeamType } from "@/components/Team";
+import { teamColors } from "@/components/Team";
+import type { TeamType } from "@/lib/Types";
 
 const getNextColor = (colorToFind: string) => {
   const index = teamColors.findIndex((color) => {

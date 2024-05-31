@@ -1,4 +1,4 @@
-import { TeamType } from "@/components/Team";
+import type { TeamType } from "@/lib/Types";
 
 export const formatTime = (seconds: number) => {
   const minutes = Math.floor(seconds / 60);

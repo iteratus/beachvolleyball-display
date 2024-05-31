@@ -1,4 +1,3 @@
-import React from "react";
 import localFont from "next/font/local";
 
 const myFont = localFont({ src: "../../public/fonts/digital-7-mono.ttf" });

@@ -1,7 +1,6 @@
 import { useCallback } from "react";
 import { findTeamIndex } from "@/lib/utils";
-import { TeamType } from "@/components/Team";
-import { DropTargetMonitor } from "react-dnd";
+import type { DragDataType, TeamType } from "@/lib/Types";
 
 export default function useTeamGUI(
   activeTeams: TeamType[],
@@ -52,12 +51,7 @@ export default function useTeamGUI(
     [activeTeams, eliminatedTeams, saveTeams],
   );
 
-  const handleDrag = (
-    ref: any,
-    hoverId: string,
-    dragData: any,
-    monitor: DropTargetMonitor,
-  ) => {
+  const handleDrag = (hoverId: string, dragData: DragDataType) => {
     // Don't replace items with themselves
     if (dragData.id === hoverId) {
       return;
@@ -100,31 +94,6 @@ export default function useTeamGUI(
       }
       return;
     }
-
-    // // Determine rectangle on screen
-    // const hoverBoundingRect = ref.current.getBoundingClientRect();
-    //
-    // // Get vertical middle
-    // const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
-    //
-    // // Determine mouse position
-    // const clientOffset = monitor.getClientOffset()!;
-    //
-    // // Get pixels to the top
-    // const hoverClientY = clientOffset.y - hoverBoundingRect.top;
-    //
-    // // Only perform the move when the mouse has crossed half of the items height
-    // // When dragging downwards, only move when the cursor is below 50%
-    // // When dragging upwards, only move when the cursor is above 50%
-
-    // // Dragging downwards
-    // if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
-    //   return;
-    // }
-    // // Dragging upwards
-    // if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
-    //   return;
-    // }
 
     const newActiveTeams = [...activeTeams];
     const newEliminatedTeams = [...eliminatedTeams];

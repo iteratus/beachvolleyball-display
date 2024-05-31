@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { DndProvider, DropTargetMonitor } from "react-dnd";
+import { useState, useEffect } from "react";
+import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
-import { TeamType } from "@/components/Team";
 import useTeamGUI from "@/lib/useTeamGUI";
 import TeamList from "@/components/TeamList";
-import { findTeamIndex } from "@/lib/utils";
+import type { TeamType } from "@/lib/Types";
 
 export default function TeamGUI() {
   const [activeTeams, setActiveTeams] = useState<TeamType[]>([]);
