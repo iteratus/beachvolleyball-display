@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useRef } from "react";
 import Team, { TeamType } from "@/components/Team";
 import useTeamList from "@/lib/useTeamList";
+import { DropTargetMonitor, useDrop } from "react-dnd";
 
 type TeamListProps = {
   stackName: string;
@@ -8,6 +9,12 @@ type TeamListProps = {
   teams: TeamType[];
   setTeams: any;
   onChangeEliminated: (id: string) => void;
+  onDrag: (
+    ref: any,
+    hoverId: string,
+    dragData: any,
+    monitor: DropTargetMonitor,
+  ) => void;
 };
 
 export default function TeamList({
@@ -16,7 +23,10 @@ export default function TeamList({
   teams,
   setTeams,
   onChangeEliminated,
+  onDrag,
 }: TeamListProps) {
+  const ref = useRef(null);
+
   const {
     handleAdd,
     handleRemove,
@@ -25,10 +35,22 @@ export default function TeamList({
     handleChangeName,
   } = useTeamList(stackName, teams, setTeams);
 
+  const [collectedProps, drop] = useDrop({
+    accept: "team",
+    hover(item, monitor) {
+      if (!ref.current) {
+        return;
+      }
+      onDrag(ref, stackName, item, monitor);
+    },
+  });
+
+  drop(ref);
+
   return (
     <div>
       <h2 className="text-2xl mb-4">{title}</h2>
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2 teamList" ref={ref}>
         {teams.map((team) => (
           <Team
             key={team.id}
@@ -36,12 +58,13 @@ export default function TeamList({
             name={team.name}
             color={team.color}
             score={team.score}
-            eliminated={team.eliminated}
+            eliminated={stackName === "eliminatedTeams"}
             onChangeName={handleChangeName}
             onChangeColor={handleChangeColor}
             onChangeScore={handleChangeScore}
             onChangeEliminated={onChangeEliminated}
             onRemove={handleRemove}
+            onDrag={onDrag}
           />
         ))}
       </div>

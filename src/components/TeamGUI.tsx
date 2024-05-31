@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { DndProvider } from "react-dnd";
+import { DndProvider, DropTargetMonitor } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { TeamType } from "@/components/Team";
 import useTeamGUI from "@/lib/useTeamGUI";
 import TeamList from "@/components/TeamList";
+import { findTeamIndex } from "@/lib/utils";
 
 export default function TeamGUI() {
   const [activeTeams, setActiveTeams] = useState<TeamType[]>([]);
@@ -18,7 +19,7 @@ export default function TeamGUI() {
     setEliminatedTeams(eliminated);
   }, []);
 
-  const { handleChangeEliminated } = useTeamGUI(
+  const { handleChangeEliminated, handleDrag } = useTeamGUI(
     activeTeams,
     setActiveTeams,
     eliminatedTeams,
@@ -35,6 +36,7 @@ export default function TeamGUI() {
           teams={activeTeams}
           setTeams={setActiveTeams}
           onChangeEliminated={handleChangeEliminated}
+          onDrag={handleDrag}
         />
         <TeamList
           key="eliminatedTeams"
@@ -43,6 +45,7 @@ export default function TeamGUI() {
           teams={eliminatedTeams}
           setTeams={setEliminatedTeams}
           onChangeEliminated={handleChangeEliminated}
+          onDrag={handleDrag}
         />
       </div>
     </DndProvider>

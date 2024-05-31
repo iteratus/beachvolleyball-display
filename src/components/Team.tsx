@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { useDrag } from "react-dnd";
+import { DropTargetMonitor, useDrag, useDrop } from "react-dnd";
 
 export const teamColors = ["blue", "green", "red", "yellow"];
 
@@ -17,6 +17,12 @@ export type TeamHandler = {
   onChangeScore: (id: string, score: number) => void;
   onChangeEliminated: (id: string) => void;
   onRemove: (id: string) => void;
+  onDrag: (
+    ref: any,
+    hoverId: string,
+    dragData: any,
+    monitor: DropTargetMonitor,
+  ) => void;
 };
 
 type TeamPropType = TeamType & TeamHandler;
@@ -32,18 +38,34 @@ export default function Team({
   onChangeScore,
   onChangeEliminated,
   onRemove,
+  onDrag,
 }: TeamPropType) {
   const ref = useRef<HTMLDivElement>(null);
 
+  const [collectedProps, drop] = useDrop({
+    accept: "team",
+    collect(monitor) {
+      return {
+        isOver: monitor.isOver(),
+      };
+    },
+    hover(item, monitor) {
+      if (!ref.current) {
+        return;
+      }
+      onDrag(ref, id, item, monitor);
+    },
+  });
+
   const [{ isDragging }, drag] = useDrag(() => ({
     type: "team",
-    team: { id },
+    item: { id },
     collect: (monitor) => ({
-      isDragging: !!monitor.isDragging(),
+      isDragging: monitor.isDragging(),
     }),
   }));
 
-  drag(ref);
+  drag(drop(ref));
 
   return (
     <div
@@ -52,6 +74,7 @@ export default function Team({
       style={{ opacity: isDragging ? 0.8 : 1 }}
     >
       <div className="draggable" />
+      {collectedProps.isOver ? "over" : "out"}
       <input
         type="text"
         className="input"

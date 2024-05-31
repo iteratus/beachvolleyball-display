@@ -26,7 +26,6 @@ export default function useTeamList(
       name: "",
       color: teamColors[0],
       score: 0,
-      eliminated: stackName !== "activeTeams",
     });
     localStorage.setItem(stackName, JSON.stringify(updatedTeams));
     setTeams(updatedTeams);
