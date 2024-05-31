@@ -30,7 +30,7 @@ export default function Home() {
 
   return (
     <main
-      className={`${saira.className} p-7 grid grid-cols-3 h-screen w-screen justify-center`}
+      className={`${saira.className} p-7 grid grid-cols-3 grid-rows-custom min-w-screen justify-center`}
     >
       <div className="flex flex-col items-center col-span-3 pb-6">
         <h1 className="uppercase font-extrabold text-headline italic">

@@ -54,6 +54,9 @@ const config: Config = {
         mainPanel: "#1c1c1e",
         stepper: "#2c2c2e",
       },
+      gridTemplateRows: {
+        custom: "auto auto",
+      },
     },
   },
   plugins: [],
