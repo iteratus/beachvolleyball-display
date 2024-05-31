@@ -38,7 +38,7 @@ export default function Home() {
         </h1>
         <TimerRemote />
       </div>
-      <div className="px-8 py-3 -skew-x-12">
+      <div className="px-8 py-5 -skew-x-12">
         <h2 className="uppercase font-extrabold text-headline text-nowrap">
           👑 Kingside
         </h2>
@@ -47,7 +47,7 @@ export default function Home() {
         </div>
         <div className="text-scoreMain mt-3 flex items-center">
           <div
-            className="mr-6 rounded-full dotBig skew-x-12 font-extrabold textShadow text-2xl"
+            className="mr-6 rounded-full dotBig skew-x-12 font-extrabold textShadow text-2xl shrink-0"
             style={{
               backgroundColor:
                 (activeTeams[0] && activeTeams[0].color) ?? "transparent",
@@ -56,14 +56,14 @@ export default function Home() {
           {activeTeams[0] && activeTeams[0].score}
         </div>
       </div>
-      <div className="px-8 py-3 border-x-4 -skew-x-12">
+      <div className="px-8 py-5 border-x-4 -skew-x-12">
         <h2 className="uppercase font-extrabold text-headline">Challenger</h2>
         <div className="uppercase font-extrabold text-headline pt-2 text-nowrap">
           {activeTeams[1] && activeTeams[1].name}
         </div>
         <div className="text-scoreMain mt-3 flex items-center">
           <div
-            className="mr-6 rounded-full dotBig skew-x-12 font-extrabold textShadow text-2xl"
+            className="mr-6 rounded-full dotBig skew-x-12 font-extrabold textShadow text-2xl shrink-0"
             style={{
               backgroundColor:
                 (activeTeams[1] && activeTeams[1].color) ?? "transparent",
@@ -72,7 +72,7 @@ export default function Home() {
           {activeTeams[1] && activeTeams[1].score}
         </div>
       </div>
-      <div className="px-8 py-3 -skew-x-12">
+      <div className="px-8 py-5 -skew-x-12">
         <h2 className="uppercase font-extrabold text-headline text-nowrap">
           Next up
         </h2>
@@ -87,7 +87,7 @@ export default function Home() {
                   {team.score}
                 </div>
                 <div
-                  className="mx-3 rounded-full dotSmall skew-x-12 font-extrabold textShadow text-2xl"
+                  className="mx-3 rounded-full dotSmall skew-x-12 font-extrabold textShadow text-2xl shrink-0"
                   style={{ backgroundColor: team.color }}
                 />
                 <div className="uppercase font-extrabold text-team text-nowrap">
