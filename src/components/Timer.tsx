@@ -6,9 +6,7 @@ import React, {
   forwardRef,
 } from "react";
 import { formatTime } from "@/lib/utils";
-import localFont from "next/font/local";
-
-const myFont = localFont({ src: "../../public/fonts/digital-7-mono.ttf" });
+import TimerDisplay from "@/components/TimerDisplay";
 
 interface TimerProps {
   initialMinutes: number;
@@ -75,12 +73,7 @@ const Timer = forwardRef<TimerHandle, TimerProps>(
       window.dispatchEvent(new Event("storage"));
     }, [initialMinutes]);
 
-    return (
-      <div className={`${myFont.className} text-clockFaceGUI relative`}>
-        <div className="text-[#333333] select-none">88:88</div>
-        <div className="absolute left-0 top-0">{formatTime(time)}</div>
-      </div>
-    );
+    return <TimerDisplay time={formatTime(time)} />;
   },
 );
 Timer.displayName = "Timer";

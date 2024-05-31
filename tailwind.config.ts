@@ -15,10 +15,35 @@ const config: Config = {
             lineHeight: "1",
           },
         ],
+        clockFaceRemote: [
+          "150pt",
+          {
+            lineHeight: "1",
+          },
+        ],
+        headline: [
+          "25pt",
+          {
+            lineHeight: "1",
+          },
+        ],
+        team: [
+          "22pt",
+          {
+            lineHeight: "1",
+          },
+        ],
+        scoreMain: [
+          "72pt",
+          {
+            lineHeight: "1",
+          },
+        ],
       },
       colors: {
-        mainColor: "#FFFFFF",
+        clockBackdrop: "#292929",
         input: "#000000",
+        mainColor: "#FFFFFF",
       },
       backgroundColor: {
         button: "#007aff",

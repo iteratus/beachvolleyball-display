@@ -1,29 +1,29 @@
-import React, { useState, useEffect, useCallback } from "react";
-import { formatTime } from "@/lib/utils";
+import React from "react";
+import localFont from "next/font/local";
 
-export default function TimerDisplay() {
-  const [currentTime, setCurrentTime] = useState<string>("00:00");
+const myFont = localFont({ src: "../../public/fonts/digital-7-mono.ttf" });
 
-  const handleStorageChange = useCallback(() => {
-    const savedTime = parseInt(localStorage.getItem("timer") ?? "0", 10);
-    setCurrentTime(formatTime(savedTime));
-  }, []);
+export enum TimerSize {
+  regular,
+  big,
+}
 
-  useEffect(() => {
-    let savedTime = 0;
+interface TimerDisplayProps {
+  size?: TimerSize;
+  time: string;
+}
 
-    if (typeof window !== "undefined") {
-      savedTime = parseInt(localStorage?.getItem("timer") ?? "0", 10);
-    }
+export default function TimerDisplay({
+  size = TimerSize.regular,
+  time,
+}: TimerDisplayProps) {
+  const fontSize =
+    size === TimerSize.big ? "text-clockFaceRemote" : "text-clockFaceGUI";
 
-    setCurrentTime(formatTime(savedTime));
-
-    window.addEventListener("storage", handleStorageChange);
-
-    return () => {
-      window.removeEventListener("storage", handleStorageChange);
-    };
-  }, [handleStorageChange]);
-
-  return <div>Current time in localStorage: {currentTime}</div>;
+  return (
+    <div className={`${myFont.className} ${fontSize} not-italic relative`}>
+      <div className="text-clockBackdrop select-none">88:88</div>
+      <div className="absolute left-0 top-0">{time}</div>
+    </div>
+  );
 }

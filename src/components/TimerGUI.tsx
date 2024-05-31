@@ -39,7 +39,7 @@ export default function TimerGUI() {
   );
 
   return (
-    <div className="grid grid-cols-[50px_1fr_1fr] grid-rows-3 gap-6 w-fit h-fit justify-items-center">
+    <div className="grid grid-cols-[50px_1fr_1fr] grid-rows-4 gap-6 w-fit h-fit justify-items-center">
       <div className="self-end">
         <Button onClick={setNewTimerInit(1)} type={ButtonType.stepUp} />
       </div>
@@ -61,6 +61,12 @@ export default function TimerGUI() {
       </div>
       <div>
         <Button onClick={resetTimer}>Reset</Button>
+      </div>
+      <div />
+      <div className="col-span-2 self-center">
+        <Button onClick={() => window.open("/screen")}>
+          Open remote screen
+        </Button>
       </div>
     </div>
   );
