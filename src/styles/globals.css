@@ -58,4 +58,12 @@ input[type=number] {
         outline: #007aff solid 1px;
         border-radius: 5px;
     }
+    .dotBig {
+        width: 8vmin;
+        height: 8vmin;
+    }
+    .dotSmall {
+        width: 3vmin;
+        height: 3vmin;
+    }
 }
