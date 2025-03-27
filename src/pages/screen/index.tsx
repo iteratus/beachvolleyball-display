@@ -30,7 +30,7 @@ export default function Home() {
 
   return (
     <main
-      className={`${saira.className} p-7 grid grid-cols-3 grid-rows-custom min-w-screen justify-center`}
+      className={`${saira.className} p-7 grid grid-cols-3 grid-rows-(--rows-custom) justify-center`}
     >
       <div className="flex flex-col items-center col-span-3 pb-6">
         <h1 className="uppercase font-extrabold text-headline italic">
@@ -38,9 +38,9 @@ export default function Home() {
         </h1>
         <TimerRemote />
       </div>
-      <div className="pr-scoreBoard py-5 -skew-x-12">
+      <div className="pr-(--p-scoreBoard) py-5 -skew-x-12">
         <h2 className="uppercase font-extrabold text-headline text-nowrap">
-          👑 Kingside
+          👑 KingSide
         </h2>
         <div className="uppercase font-extrabold text-headline pt-2 text-nowrap">
           {activeTeams[0] && activeTeams[0].name}
@@ -56,7 +56,7 @@ export default function Home() {
           {activeTeams[0] && activeTeams[0].score}
         </div>
       </div>
-      <div className="p-scoreBoard py-5 border-x-separator -skew-x-12">
+      <div className="p-(--p-scoreBoard) py-5 border-x-[1vmin] -skew-x-12">
         <h2 className="uppercase font-extrabold text-headline">Challenger</h2>
         <div className="uppercase font-extrabold text-headline pt-2 text-nowrap">
           {activeTeams[1] && activeTeams[1].name}
@@ -72,7 +72,7 @@ export default function Home() {
           {activeTeams[1] && activeTeams[1].score}
         </div>
       </div>
-      <div className="pl-scoreBoard py-5 -skew-x-12">
+      <div className="pl-(--p-scoreBoard) py-5 -skew-x-12">
         <h2 className="uppercase font-extrabold text-headline text-nowrap">
           Next up
         </h2>

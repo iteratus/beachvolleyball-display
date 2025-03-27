@@ -1,6 +1,30 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+    --color-clockBackdrop: #292929;
+    --color-button: #007aff;
+    --color-buttonActive: #004085;
+    --color-buttonHover: #0056b3;
+    --color-delete: #c7000a;
+    --color-input: #2c2c2e;
+    --color-mainColor: #ffffff;
+    --color-mainPanel: #1c1c1e;
+    --color-stepper: #2c2c2e;
+
+    --text-clockFaceGUI: 100pt;
+    --text-clockFaceGUI--line-height: 1;
+    --text-clockFaceRemote: 30vmin;
+    --text-clockFaceRemote--line-height: 1;
+    --text-headline: 4vmin;
+    --text-headline--line-height: 1;
+    --text-team: 3.5vmin;
+    --text-team--line-height: 1;
+    --text-scoreMain: 10vmin;
+    --text-scoreMain--line-height: 1;
+
+    --rows-custom: auto auto;
+    --p-scoreBoard: 8vmin;
+}
 
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
