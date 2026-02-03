@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useDrag, useDrop } from "react-dnd";
 import Button, { ButtonEnum } from "@/components/Button";
 import type { DragDataType, TeamType } from "@/lib/Types";
@@ -22,7 +22,7 @@ type TeamHandler = {
 
 type TeamPropType = TeamType & TeamHandler;
 
-export default function Team({
+const Team = ({
   id,
   name,
   color,
@@ -34,7 +34,7 @@ export default function Team({
   onChangeEliminated,
   onRemove,
   onDrag,
-}: TeamPropType) {
+}: TeamPropType) => {
   const ref = useRef<HTMLDivElement>(null);
 
   const [{ isOver }, drop] = useDrop({
@@ -57,7 +57,9 @@ export default function Team({
     }),
   }));
 
-  drag(drop(ref));
+  useEffect(() => {
+    drag(drop(ref));
+  }, [drag, drop]);
 
   return (
     <div
@@ -95,4 +97,6 @@ export default function Team({
       <Button emoji="🗑️" onClick={() => onRemove(id)} />
     </div>
   );
-}
+};
+
+export default Team;

@@ -9,7 +9,7 @@ const saira = Saira({
   subsets: ["latin"],
 });
 
-export default function Home() {
+const Home = () => {
   const [activeTeams, setActiveTeams] = useState<TeamType[]>([]);
 
   const handleStorageChange = useCallback(() => {
@@ -19,6 +19,8 @@ export default function Home() {
 
   useEffect(() => {
     const active = JSON.parse(localStorage.getItem("activeTeams") || "[]");
+
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setActiveTeams(active);
 
     window.addEventListener("storage", handleStorageChange);
@@ -100,4 +102,6 @@ export default function Home() {
       </div>
     </main>
   );
-}
+};
+
+export default Home;

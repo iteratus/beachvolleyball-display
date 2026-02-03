@@ -3,7 +3,7 @@ import Timer from "@/components/Timer";
 import Button, { ButtonEnum } from "@/components/Button";
 import type { TimerHandling } from "@/lib/Types";
 
-export default function TimerGUI() {
+const TimerGUI = () => {
   const [initialMinutes, setInitialMinutes] = useState<number>(15);
 
   const [isPaused, setIsPaused] = useState<boolean>(true);
@@ -20,6 +20,7 @@ export default function TimerGUI() {
     const storageInitialMinutes =
       localStorage.getItem("timerInitialMinutes") ?? "15";
 
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setInitialMinutes(parseInt(storageInitialMinutes, 10));
   }, []);
 
@@ -71,4 +72,6 @@ export default function TimerGUI() {
       </div>
     </div>
   );
-}
+};
+
+export default TimerGUI;

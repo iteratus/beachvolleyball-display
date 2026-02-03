@@ -2,12 +2,12 @@ import { useCallback } from "react";
 import { findTeamIndex } from "@/lib/utils";
 import type { DragDataType, TeamType } from "@/lib/Types";
 
-export default function useTeamGUI(
+const useTeamGUI = (
   activeTeams: TeamType[],
   setActiveTeams: (activeTeams: TeamType[]) => void,
   eliminatedTeams: TeamType[],
   setEliminatedTeams: (eliminatedTeams: TeamType[]) => void,
-) {
+) => {
   const saveTeams = useCallback(
     (newActiveTeams: TeamType[], newEliminatedTeams: TeamType[]) => {
       localStorage.setItem("activeTeams", JSON.stringify(newActiveTeams));
@@ -125,4 +125,6 @@ export default function useTeamGUI(
     handleChangeEliminated,
     handleDrag,
   };
-}
+};
+
+export default useTeamGUI;

@@ -1,4 +1,9 @@
-import React, { type Dispatch, type SetStateAction, useRef } from "react";
+import React, {
+  type Dispatch,
+  type SetStateAction,
+  useEffect,
+  useRef,
+} from "react";
 import Team from "@/components/Team";
 import useTeamList from "@/lib/useTeamList";
 import { useDrop } from "react-dnd";
@@ -14,14 +19,14 @@ type TeamListProps = {
   onDrag: (hoverId: string, dragData: { id: string }) => void;
 };
 
-export default function TeamList({
+const TeamList = ({
   stackName,
   title,
   teams,
   setTeams,
   onChangeEliminated,
   onDrag,
-}: TeamListProps) {
+}: TeamListProps) => {
   const ref = useRef(null);
 
   const {
@@ -39,12 +44,14 @@ export default function TeamList({
     },
   });
 
-  dropHandler[1](ref);
+  useEffect(() => {
+    dropHandler[1](ref);
+  }, [dropHandler]);
 
   return (
     <div>
       <h2 className="text-2xl mb-4">{title}</h2>
-      <div className="flex flex-col min-w-[446px] teamList" ref={ref}>
+      <div className="flex flex-col min-w-111.5 teamList" ref={ref}>
         {teams.map((team) => (
           <Team
             key={team.id}
@@ -67,4 +74,6 @@ export default function TeamList({
       </Button>
     </div>
   );
-}
+};
+
+export default TeamList;

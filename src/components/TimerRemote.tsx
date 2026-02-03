@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { formatTime } from "@/lib/utils";
 import TimerDisplay, { TimerSize } from "@/components/TimerDisplay";
 
-export default function TimerRemote() {
+const TimerRemote = () => {
   const [currentTime, setCurrentTime] = useState<string>("00:00");
 
   const handleStorageChange = useCallback(() => {
@@ -17,6 +17,7 @@ export default function TimerRemote() {
       savedTime = parseInt(localStorage?.getItem("timer") ?? "0", 10);
     }
 
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setCurrentTime(formatTime(savedTime));
 
     window.addEventListener("storage", handleStorageChange);
@@ -27,4 +28,6 @@ export default function TimerRemote() {
   }, [handleStorageChange]);
 
   return <TimerDisplay size={TimerSize.big} time={currentTime} />;
-}
+};
+
+export default TimerRemote;

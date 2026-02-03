@@ -16,11 +16,11 @@ const getNextColor = (colorToFind: string) => {
   return teamColors[index + 1];
 };
 
-export default function useTeamList(
+const useTeamList = (
   stackName: string,
   teams: TeamType[],
   setTeams: (teams: TeamType[]) => void,
-) {
+) => {
   const handleAdd = () => {
     const updatedTeams = updateTeam(teams, {
       id: uuid(),
@@ -98,4 +98,6 @@ export default function useTeamList(
     handleChangeScore,
     handleChangeName,
   };
-}
+};
+
+export default useTeamList;

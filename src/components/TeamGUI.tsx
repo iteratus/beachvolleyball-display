@@ -5,7 +5,7 @@ import useTeamGUI from "@/lib/useTeamGUI";
 import TeamList from "@/components/TeamList";
 import type { TeamType } from "@/lib/Types";
 
-export default function TeamGUI() {
+const TeamGUI = () => {
   const [activeTeams, setActiveTeams] = useState<TeamType[]>([]);
   const [eliminatedTeams, setEliminatedTeams] = useState<TeamType[]>([]);
 
@@ -14,6 +14,8 @@ export default function TeamGUI() {
     const eliminated = JSON.parse(
       localStorage.getItem("eliminatedTeams") || "[]",
     );
+
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setActiveTeams(active);
     setEliminatedTeams(eliminated);
   }, []);
@@ -49,4 +51,6 @@ export default function TeamGUI() {
       </div>
     </DndProvider>
   );
-}
+};
+
+export default TeamGUI;

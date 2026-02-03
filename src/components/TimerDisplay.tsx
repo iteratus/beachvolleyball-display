@@ -12,10 +12,10 @@ interface TimerDisplayProps {
   time: string;
 }
 
-export default function TimerDisplay({
+const TimerDisplay = ({
   size = TimerSize.regular,
   time,
-}: TimerDisplayProps) {
+}: TimerDisplayProps) => {
   const fontSize =
     size === TimerSize.big ? "text-clockFaceRemote" : "text-clockFaceGUI";
 
@@ -25,4 +25,6 @@ export default function TimerDisplay({
       <div className="absolute left-0 top-0">{time}</div>
     </div>
   );
-}
+};
+
+export default TimerDisplay;

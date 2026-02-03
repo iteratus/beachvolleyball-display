@@ -15,13 +15,13 @@ type ButtonProps = {
   type?: ButtonEnum;
 };
 
-export default function Button({
+const Button = ({
   children,
   className,
   emoji,
   onClick,
   type = ButtonEnum.regular,
-}: ButtonProps) {
+}: ButtonProps) => {
   let usedChildren = children;
 
   let classNames =
@@ -47,4 +47,6 @@ export default function Button({
       {usedChildren}
     </button>
   );
-}
+};
+
+export default Button;

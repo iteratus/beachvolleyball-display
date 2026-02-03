@@ -26,5 +26,3 @@ export const updateTeam = (
 
   return updatedTeams;
 };
-
-export default formatTime;
