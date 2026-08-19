@@ -5,7 +5,7 @@ const Home = () => {
   return (
     <main className="p-10 flex gap-40" data-testid="irgendwas">
       <TimerGUI />
-        <br />
+        <p>Neuer Paragraph</p>
       <TeamGUI />
     </main>
   );
